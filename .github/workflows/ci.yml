@@ -1,0 +1,16 @@
+name: C tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build with strict warnings and sanitizers
+        run: |
+          mkdir -p build
+          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror -g -fsanitize=undefined main.c game.c -o build/tictactoe
+          gcc -std=c11 -Wall -Wextra -Wpedantic -Werror -g -fsanitize=undefined tests/test_game.c game.c -o build/test_game
+      - run: ./build/test_game
+      - run: python3 tests/test_cli.py ./build/tictactoe
