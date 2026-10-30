@@ -130,7 +130,6 @@ The engine knows the board and rules. The terminal layer knows prompts and score
 
 Persistent scores, selectable human symbols, difficulty levels, and a graphical front end are natural next steps.
 
-## Enable GitHub Actions
+## Automated checks
 
-The publishing credential did not include GitHub's workflow permission, so the CI template is provided in ci/github-actions.yml. To enable automated Linux checks, copy it to .github/workflows/ci.yml and commit using a credential with workflow permission, or use the GitHub web editor. The template builds with strict warnings and UndefinedBehaviorSanitizer, then runs both test suites. Local Windows tests have passed; hosted CI has not yet run.
-
+The active workflow in `.github/workflows/ci.yml` builds on Linux with strict warnings and UndefinedBehaviorSanitizer, then runs both test suites. The first hosted run passed. See the Actions tab for current results. The original template remains in `ci/github-actions.yml`.
